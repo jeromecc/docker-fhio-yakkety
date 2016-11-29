@@ -41,7 +41,7 @@ ADD supervisord.conf /etc/supervisor/conf.d/
 ADD doro-lxde-wallpapers /usr/share/doro-lxde-wallpapers/
 ADD gtkrc-2.0 /home/ubuntu/.gtkrc-2.0
 ADD qt/qt_silent_install.qs /home/ubuntu
-ADD https://download.qt.io/official_releases/qt/5.7/5.7.0/qt-opensource-linux-x64-5.7.0.run /home/ubuntu
+ADD ~/qt-opensource-linux-x64-5.7.0.run /home/ubuntu
 RUN chmod +x /home/ubuntu/qt-opensource-linux-x64-5.7.0.run
 RUN Xvfb :1 -screen 0 1024x768x16 &> xvfb.log  &
 RUN DISPLAY=:1.0
