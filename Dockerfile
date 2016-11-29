@@ -1,25 +1,38 @@
 FROM ubuntu:16.10
-MAINTAINER Doro Wu <fcwu.tw@gmail.com>
+MAINTAINER jerome <jerome@jerome.cc>
 
 ENV DEBIAN_FRONTEND noninteractive
 ENV HOME /home/ubuntu
 
 # built-in packages
 RUN apt-get update
-RUN apt-get install -y --force-yes --no-install-recommends software-properties-common curl
-RUN apt-get update
-RUN apt-get install -y --force-yes --no-install-recommends \
+RUN apt-get install -y --allow-downgrades --allow-remove-essential --allow-change-held-packages --no-install-recommends \
+        curl \
+        software-properties-common \
         supervisor \
-        openssh-server pwgen sudo vim-tiny \
+        openssh-server \
+        pwgen \
+        sudo \
+        vim-tiny \
         net-tools \
-        lxde x11vnc xvfb \
-        gtk2-engines-murrine ttf-ubuntu-font-family \
+        lxde \
+        x11vnc \
+        xvfb \
+        gtk2-engines-murrine \
+        ttf-ubuntu-font-family \
         nginx \
-        python-pip python-dev build-essential \
-        mesa-utils libgl1-mesa-dri \
-        gnome-themes-standard gtk2-engines-pixbuf gtk2-engines-murrine pinta arc-theme \
-    && apt-get autoclean \
-    && apt-get autoremove \
+        python-pip \
+        python-dev \
+        build-essential \
+        mesa-utils \
+        libgl1-mesa-dri \
+        gnome-themes-standard \
+        gtk2-engines-pixbuf \
+        gtk2-engines-murrine \
+        pinta \
+        arc-theme \
+RUN apt-get autoclean
+RUN apt-get autoremove
 
 ADD web /web/
 RUN pip install setuptools wheel && pip install -r /web/requirements.txt
