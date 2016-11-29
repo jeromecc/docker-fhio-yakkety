@@ -59,6 +59,8 @@ RUN apt-get install -y --allow-downgrades --allow-remove-essential --allow-chang
     qtscript5-dev \
     libqt5gui5 \
     qtxmlpatterns5-dev-tools
+RUN apt-get install -y --allow-downgrades --allow-remove-essential --allow-change-held-packages --no-install-recommends \
+    qt5-default
 #RUN qmake -v
 #ADD qt/qt-opensource-linux-x64-5.7.0.run /home/ubuntu
 #RUN chmod +x /home/ubuntu/qt-opensource-linux-x64-5.7.0.run
