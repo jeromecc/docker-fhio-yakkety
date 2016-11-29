@@ -54,11 +54,10 @@ RUN apt-get install -y --allow-downgrades --allow-remove-essential --allow-chang
 RUN apt-get install -y --allow-downgrades --allow-remove-essential --allow-change-held-packages --no-install-recommends \
     qtbase5-dev
 RUN apt-get install -y --allow-downgrades --allow-remove-essential --allow-change-held-packages --no-install-recommends \
-    libxext-dev \
     libqt5svg5 \
     libqt5svg5-dev \
     qtscript5-dev \
-    libqt5* \
+    libqt5gui5 \
     qtxmlpatterns5-dev-tools
 #RUN qmake -v
 #ADD qt/qt-opensource-linux-x64-5.7.0.run /home/ubuntu
