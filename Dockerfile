@@ -50,10 +50,8 @@ ADD doro-lxde-wallpapers /usr/share/doro-lxde-wallpapers/
 ADD gtkrc-2.0 /home/ubuntu/.gtkrc-2.0
 RUN apt-get update
 RUN apt-get install -y --allow-downgrades --allow-remove-essential --allow-change-held-packages --no-install-recommends \
-    apt-utils
-RUN apt-get install -y --allow-downgrades --allow-remove-essential --allow-change-held-packages --no-install-recommends \
     qt5-qmake
-RUN qmake -v
+#RUN qmake -v
 #ADD qt/qt-opensource-linux-x64-5.7.0.run /home/ubuntu
 #RUN chmod +x /home/ubuntu/qt-opensource-linux-x64-5.7.0.run
 #ADD qt/qt_silent_install.qs /home/ubuntu
