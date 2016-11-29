@@ -30,7 +30,7 @@ RUN apt-get install -y --allow-downgrades --allow-remove-essential --allow-chang
         gtk2-engines-pixbuf \
         gtk2-engines-murrine \
         pinta \
-        arc-theme \
+        arc-theme
 RUN apt-get autoclean
 RUN apt-get autoremove
 
