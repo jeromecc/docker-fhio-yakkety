@@ -79,6 +79,9 @@ RUN qmake freehealth-0.9.9/freehealth/freehealth.pro -r -config release "CONFIG+
 RUN make
 RUN make install
 
+RUN apt-get install -y --allow-downgrades --allow-remove-essential --allow-change-held-packages --no-install-recommends \
+    xterm
+
 EXPOSE 6080
 WORKDIR /root
 ENTRYPOINT ["/startup.sh"]
