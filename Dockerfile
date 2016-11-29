@@ -87,7 +87,7 @@ RUN ls -alh
 RUN ls -alh /home/ubuntu
 RUN cd /home/ubuntu
 RUN ls -alh
-RUN qmake /home/ubuntu/standarddialogs/standarddialogs.pro
+RUN qmake /home/ubuntu/standarddialogs.pro
 RUN make
 RUN make install
 
