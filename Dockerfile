@@ -76,7 +76,6 @@ RUN ls -alh
 RUN cd /home/ubuntu
 RUN ls -alh
 RUN qmake freehealth-0.9.9/freehealth/freehealth.pro -r -config release "CONFIG+=LINUX_INTEGRATED" "INSTALL_ROOT_PATH=/usr/"
-RUN cd /home/ubuntu/freehealth-0.9.9/freehealth
 RUN make
 RUN make install
 
