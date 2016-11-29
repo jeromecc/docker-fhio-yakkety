@@ -1,30 +1,25 @@
-FROM ubuntu:14.04
+FROM ubuntu:16.10
 MAINTAINER Doro Wu <fcwu.tw@gmail.com>
 
 ENV DEBIAN_FRONTEND noninteractive
 ENV HOME /home/ubuntu
 
 # built-in packages
-RUN apt-get update \
-    && apt-get install -y --force-yes --no-install-recommends software-properties-common curl \
-    && sudo sh -c "echo 'deb http://download.opensuse.org/repositories/home:/Horst3180/xUbuntu_16.04/ /' >> /etc/apt/sources.list.d/arc-theme.list" \
-    && curl -SL http://download.opensuse.org/repositories/home:Horst3180/xUbuntu_16.04/Release.key | sudo apt-key add - \
-    && add-apt-repository ppa:fcwu-tw/ppa \
-    && apt-get update \
-    && apt-get install -y --force-yes --no-install-recommends \
+RUN apt-get update
+RUN apt-get install -y --force-yes --no-install-recommends software-properties-common curl
+RUN apt-get update
+RUN apt-get install -y --force-yes --no-install-recommends \
         supervisor \
         openssh-server pwgen sudo vim-tiny \
         net-tools \
         lxde x11vnc xvfb \
         gtk2-engines-murrine ttf-ubuntu-font-family \
-        fonts-wqy-microhei \
         nginx \
         python-pip python-dev build-essential \
         mesa-utils libgl1-mesa-dri \
         gnome-themes-standard gtk2-engines-pixbuf gtk2-engines-murrine pinta arc-theme \
     && apt-get autoclean \
     && apt-get autoremove \
-    && rm -rf /var/lib/apt/lists/*
 
 ADD web /web/
 RUN pip install setuptools wheel && pip install -r /web/requirements.txt
@@ -40,7 +35,6 @@ ADD startup.sh /
 ADD supervisord.conf /etc/supervisor/conf.d/
 ADD doro-lxde-wallpapers /usr/share/doro-lxde-wallpapers/
 ADD gtkrc-2.0 /home/ubuntu/.gtkrc-2.0
-RUN add-apt-repository ppa:beineri/opt-qt57-trusty
 RUN apt-get update
 RUN apt-get install -y --force-yes --no-install-recommends qt5-qmake
 RUN qmake -v
