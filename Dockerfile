@@ -84,14 +84,14 @@ RUN qmake /home/ubuntu/standarddialogs.pro
 RUN make
 RUN make install
 
+
 ADD https://github.com/FreeHealth/freehealth/releases/download/v0.9.9/freehealth-src_0.9.9.tgz /home/ubuntu
-RUN tar xvzf /home/ubuntu/freehealth-src_0.9.9.tgz                             
+RUN tar xvzf /home/ubuntu/freehealth-src_0.9.9.tgz -C /home/ubuntu                        
 RUN ls -alh                                                                    
 RUN cd /home/ubuntu                                                            
 RUN ls -alh                                                                    
-RUN qmake freehealth-0.9.9/freehealth/freehealth.pro -r -config release "CONFIG+=LINUX_INTEGRATED" "INSTALL_ROOT_PATH=/usr/"
+RUN qmake /home/ubuntu/freehealth-0.9.9/freehealth/freehealth.pro -r "CONFIG+=debug debug_without_install"
 RUN make                                                                       
-RUN make install 
 
 EXPOSE 6080
 WORKDIR /root
