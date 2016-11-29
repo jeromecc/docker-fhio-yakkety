@@ -1,4 +1,4 @@
-FROM ubuntu:14.04.3
+FROM ubuntu:14.04
 MAINTAINER Doro Wu <fcwu.tw@gmail.com>
 
 ENV DEBIAN_FRONTEND noninteractive
@@ -17,13 +17,11 @@ RUN apt-get update \
         net-tools \
         lxde x11vnc xvfb \
         gtk2-engines-murrine ttf-ubuntu-font-family \
-        libreoffice firefox \
         fonts-wqy-microhei \
-        language-pack-zh-hant language-pack-gnome-zh-hant firefox-locale-zh-hant libreoffice-l10n-zh-tw \
         nginx \
         python-pip python-dev build-essential \
         mesa-utils libgl1-mesa-dri \
-        gnome-themes-standard gtk2-engines-pixbuf gtk2-engines-murrine pinta arc-theme \
+        gnome-themes-standard gtk2-engines-pixbuf gtk2-engines-murrine pinta arc-theme
     && apt-get autoclean \
     && apt-get autoremove \
     && rm -rf /var/lib/apt/lists/*
@@ -42,6 +40,18 @@ ADD startup.sh /
 ADD supervisord.conf /etc/supervisor/conf.d/
 ADD doro-lxde-wallpapers /usr/share/doro-lxde-wallpapers/
 ADD gtkrc-2.0 /home/ubuntu/.gtkrc-2.0
+ADD qt/qt_silent_install.qs /home/ubuntu
+ADD qt/qt-opensource-linux-x64-5.7.0.run /home/ubuntu
+RUN chmod +x /home/ubuntu/qt-opensource-linux-x64-5.7.0.run
+RUN Xvfb :1 -screen 0 1024x768x16 &> xvfb.log  &
+RUN DISPLAY=:1.0
+RUN export DISPLAY
+RUN /home/ubuntu/qt-opensource-linux-x64-5.7.0.run --script qt_silent_install.qs
+ADD https://github.com/FreeHealth/freehealth/releases/download/v0.9.9/freehealth-src_0.9.9.tgz /home/ubuntu
+RUN qmake /home/ubuntu/freehealth-0.9.9/freehealth/freehealth.pro -r -config release
+    && cd /home/ubuntu/freehealth-0.9.9/freehealth
+    && make
+    && make install
 
 EXPOSE 6080
 WORKDIR /root
