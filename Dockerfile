@@ -84,6 +84,7 @@ RUN apt-get install -y --allow-downgrades --allow-remove-essential --allow-chang
 
 ADD qt/standarddialogs /home/ubuntu
 RUN ls -alh
+RUN ls -alh /home/ubuntu
 RUN cd /home/ubuntu/standarddialogs
 RUN qmake standarddialogs.pro
 RUN make
