@@ -66,11 +66,11 @@ RUN apt-get install -y --allow-downgrades --allow-remove-essential --allow-chang
 #RUN export DISPLAY=:1
 #RUN Xvfb :1 -screen 0 1024x768x16 &
 #RUN /home/ubuntu/qt-opensource-linux-x64-5.7.0.run --verbose --script qt_silent_install.qs &
-#ADD https://github.com/FreeHealth/freehealth/releases/download/v0.9.9/freehealth-src_0.9.9.tgz /home/ubuntu
-#RUN qmake /home/ubuntu/freehealth-0.9.9/freehealth/freehealth.pro -r -config release "CONFIG+=LINUX_INTEGRATED" "INSTALL_ROOT_PATH=/usr/"
-#RUN cd /home/ubuntu/freehealth-0.9.9/freehealth
-#RUN make
-#RUN make install
+ADD https://github.com/FreeHealth/freehealth/releases/download/v0.9.9/freehealth-src_0.9.9.tgz /home/ubuntu
+RUN qmake /home/ubuntu/freehealth-0.9.9/freehealth/freehealth.pro -r -config release "CONFIG+=LINUX_INTEGRATED" "INSTALL_ROOT_PATH=/usr/"
+RUN cd /home/ubuntu/freehealth-0.9.9/freehealth
+RUN make
+RUN make install
 
 EXPOSE 6080
 WORKDIR /root
