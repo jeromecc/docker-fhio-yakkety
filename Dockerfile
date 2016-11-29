@@ -59,7 +59,8 @@ RUN apt-get install -y --allow-downgrades --allow-remove-essential --allow-chang
     qtscript5-dev \
     libqt5gui5 \
     qtxmlpatterns5-dev-tools \
-    libqt5designer5
+    libqt5designer5 \
+    qttools5-dev
 RUN apt-get install -y --allow-downgrades --allow-remove-essential --allow-change-held-packages --no-install-recommends \
     qt5-default
 #RUN qmake -v
