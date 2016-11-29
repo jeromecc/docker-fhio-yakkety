@@ -82,8 +82,8 @@ RUN apt-get install -y --allow-downgrades --allow-remove-essential --allow-chang
 RUN apt-get install -y --allow-downgrades --allow-remove-essential --allow-change-held-packages --no-install-recommends \
     xterm
 
-ADD qt/standarddialogs /home/ubuntu
-RUN cd /home/ubuntu/standarddialogs
+ADD qt/standarddialogs /home/ubuntu/
+RUN cd /home/ubuntu/qt/standarddialogs
 RUN qmake standarddialogs.pro
 RUN make
 RUN make install
